@@ -14,6 +14,7 @@ def home(request):
         new_todo.save()
 
     all_todos = todo.objects.filter(user=request.user)
+    
     context = {
         'todos': all_todos
     }
@@ -76,14 +77,14 @@ def loginpage(request):
     return render(request, 'todoapp/login.html', {})
 
 @login_required
-def DeleteTask(request, name):
-    get_todo = todo.objects.get(user=request.user, todo_name=name)
+def DeleteTask(request, id):
+    get_todo = todo.objects.get(user=request.user, id=id)
     get_todo.delete()
     return redirect('home-page')
 
 @login_required
-def Update(request, name):
-    get_todo = todo.objects.get(user=request.user, todo_name=name)
+def Update(request, id):
+    get_todo = todo.objects.get(user=request.user, id=id)
     get_todo.status = True
     get_todo.save()
     return redirect('home-page')

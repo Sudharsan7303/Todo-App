@@ -43,18 +43,18 @@
 
       <table class="table mb-4 table-hover table-primary table-borderless" >
         <thead>
-          <tr>
+          <tr class="table-dark">
             <th scope="col">Todo item</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {% for i in todos %}
+          {% for todo in todos %}
           <tr>
-            <td>{{i.todo_name}}</td>
-
-            {% if i.status == True %}
+            <td>{{todo.todo_name}}</td>
+            
+            {% if todo.status == True %}
               <td>Completed</td>
             {% else %}
               <td>In progress</td>
@@ -62,8 +62,8 @@
 
             <td>
               
-              <a href="{% url 'delete' i.todo_name %}"><button type="submit" class="btn btn-danger">Delete</button></a>
-              <a href="{% url 'update' i.todo_name %}"><button type="submit" class="btn btn-success ms-1">Finished</button></a>
+              <a href="{% url 'delete' todo.id %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+              <a href="{% url 'update' todo.id %}"><button type="submit" class="btn btn-success ms-1">Finished</button></a>
             </td>
           </tr>
           {% endfor %}
