@@ -7,4 +7,6 @@ urlpatterns = [
     path('logout/', views.LogoutView, name='logout'),
     path('delete-task/<int:id>/', views.DeleteTask, name='delete'),
     path('update/<int:id>/', views.Update, name='update'),
+    path('edit/<int:id>/', views.Edit, name='edit'),
+
 ]

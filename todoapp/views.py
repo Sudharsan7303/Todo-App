@@ -88,3 +88,18 @@ def Update(request, id):
     get_todo.status = True
     get_todo.save()
     return redirect('home-page')
+
+def Edit(request, id):
+    get_todo = todo.objects.get(user=request.user, id=id)
+    if request.method=='POST':
+        task=request.POST.get('task')
+        get_todo.todo_name=task
+        get_todo.save()
+        return redirect('home-page')
+
+    
+    context = {
+        'todo': get_todo
+    }
+    
+    return render(request, 'todoapp/edit.html',context)
