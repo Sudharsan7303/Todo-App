@@ -20,15 +20,15 @@
         <a href="{% url 'logout' %}"><button style="background: firebrick; color: white;" type="submit" class="btn btn-primary "><i class="fa-solid fa-arrow-left"></i> Logout Session</button><a>
       </div>
       
-      <div class="row py-lg-5">
+      <div class="row py-lg-2">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 >Your Todo List </h1>
 
-          <form method="POST" class="row row-cols-lg-auto g-3 justify-content-center align-items-center m-4 pb-2">
+          <form method="POST" class="row row-cols-lg-auto g-3 justify-content-center align-items-center m-1 pb-1">
             {% csrf_token %}
             <div class="col-12">
               <div class="form-outline">
-                <input type="text" id="form1" class="form-control border border-3" name="task" placeholder="Enter Your Todo task"/>
+                <input type="text" id="form1" class="form-control border border-3" name="task" placeholder="Enter Your Todo task" required/>
               </div>
             </div>
 
@@ -42,18 +42,18 @@
       </div>
       {% if todos %}
 
-      <table class="table mb-4 table-hover table-primary table-borderless" >
+      <table class="table mb-4 table-hover table-primary  " >
         <thead>
           <tr class="table-dark">
-            <th scope="col">Todo item</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
+            <th scope="col" >Todo item</th>
+            <th scope="col" >Status</th>
+            <th scope="col" >Actions</th>
           </tr>
         </thead>
         <tbody>
           {% for todo in todos %}
           <tr>
-            <td>{{todo.todo_name}}</td>
+            <td style= 'word-wrap: break-word;min-width: 230px;max-width: 230px;{% if todo.status %}text-decoration: Line-Through;{% endif %}'  >{{todo.todo_name}}</td>
             
             {% if todo.status == True %}
               <td>Completed</td>
@@ -61,10 +61,10 @@
               <td>In progress</td>
             {% endif %}
 
-            <td>
-              <a href="{% url 'edit' todo.id %}"><button type="submit"  class="btn btn-warning mx-2">Edit</button></a>
-              <a href="{% url 'delete' todo.id %}"><button type="submit" class="btn btn-danger mx-2">Delete</button></a>
-              <a href="{% url 'update' todo.id %}"><button type="submit" class="btn btn-success mx-2">Finished</button></a>
+            <td >
+              <a href="{% url 'edit' todo.id %}"><button type="submit"  class="btn btn-warning btn-sm m-2">Edit</button></a>
+              <a href="{% url 'delete' todo.id %}"><button type="submit" class="btn btn-danger btn-sm m-2">Delete</button></a>
+              <a href="{% url 'update' todo.id %}"><button type="submit" class="btn btn-success btn-sm m-2">{% if todo.status == True %}Mark as not Finished {% else %} Mark as Finished {% endif %}</button></a>
             </td>
           </tr>
           {% endfor %}
