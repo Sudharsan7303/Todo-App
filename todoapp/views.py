@@ -16,7 +16,39 @@ def home(request):
     all_todos = todo.objects.filter(user=request.user)
     
     context = {
-        'todos': all_todos
+        'todos': all_todos,
+        'active':'all'
+
+    }
+    return render(request, 'todoapp/todo.html', context)
+
+@login_required
+def Finished(request):
+    if request.method == 'POST':
+        task = request.POST.get('task')
+        new_todo = todo(user=request.user, todo_name=task)
+        new_todo.save()
+
+    all_todos = todo.objects.filter(user=request.user,status=True)
+    
+    context = {
+        'todos': all_todos,
+        'active': 'finished',
+    }
+    return render(request, 'todoapp/todo.html', context)
+
+@login_required
+def Pending(request):
+    if request.method == 'POST':
+        task = request.POST.get('task')
+        new_todo = todo(user=request.user, todo_name=task)
+        new_todo.save()
+
+    all_todos = todo.objects.filter(user=request.user,status=False)
+    
+    context = {
+        'todos': all_todos,
+        'active': 'pending',
     }
     return render(request, 'todoapp/todo.html', context)
 

@@ -33,7 +33,7 @@
             </div>
 
             <div class="col-12">
-              <button type="submit" class="btn btn-primary">Add Task</button>
+              <button type="submit" class="btn btn-dark"> <i class="fa fa-plus" aria-hidden="true"></i>  Add New Task</button>
             </div>
           </form>
 
@@ -42,7 +42,20 @@
       </div>
       {% if todos %}
 
-      <table class="table mb-4 table-hover table-primary  " >
+      <ul class="nav justify-content-center nav-pills ">
+        <li class="nav-item">
+          <a class="nav-link {% if active == 'all' %}active {% endif %}" href="{% url 'home-page' %}">All tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if active == 'finished' %}active {% endif %}" href="{% url 'finished' %}">Completed tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if active == 'pending' %}active {% endif %}" href="{% url 'pending' %}">Pending tasks</a>
+        </li>
+        
+      </ul>
+
+      <table class="table m-2 table-hover table-primary  " >
         <thead>
           <tr class="table-dark">
             <th scope="col" >Todo item</th>
