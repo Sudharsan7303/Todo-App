@@ -40,10 +40,8 @@
           
         </div>
       </div>
-      {% if todos %}
-
-      <ul class="nav justify-content-center nav-pills ">
-        <li class="nav-item">
+      <ul class="nav justify-content-center nav-pills m-2 ">
+        <li class="nav-item ">
           <a class="nav-link {% if active == 'all' %}active {% endif %}" href="{% url 'home-page' %}">All tasks</a>
         </li>
         <li class="nav-item">
@@ -54,11 +52,14 @@
         </li>
         
       </ul>
+      {% if todos %}
+
+      
 
       <table class="table m-2 table-hover table-primary  " >
         <thead>
           <tr class="table-dark">
-            <th scope="col" >Todo item</th>
+            <th scope="col" >Task</th>
             <th scope="col" >Status</th>
             <th scope="col" >Actions</th>
           </tr>
@@ -66,7 +67,7 @@
         <tbody>
           {% for todo in todos %}
           <tr>
-            <td style= 'word-wrap: break-word;min-width: 230px;max-width: 230px;{% if todo.status %}text-decoration: Line-Through;{% endif %}'  >{{todo.todo_name}}</td>
+            <td style= 'word-wrap: break-word;min-width: 230px;max-width: 230px;{% if todo.status %}text-decoration: Line-Through;color:#03911d;{% endif %}'  >{{todo.todo_name}}</td>
             
             {% if todo.status == True %}
               <td>Completed</td>
@@ -75,9 +76,10 @@
             {% endif %}
 
             <td >
-              <a href="{% url 'edit' todo.id %}"><button type="submit"  class="btn btn-warning btn-sm m-2">Edit</button></a>
-              <a href="{% url 'delete' todo.id %}"><button type="submit" class="btn btn-danger btn-sm m-2">Delete</button></a>
-              <a href="{% url 'update' todo.id %}"><button type="submit" class="btn btn-success btn-sm m-2">{% if todo.status == True %}Mark as not Finished {% else %} Mark as Finished {% endif %}</button></a>
+              <a href="{% url 'edit' todo.id %}"><button type="submit"  class="btn btn-warning btn-sm m-2"> 
+                <i class="fas fa-edit"></i> Edit</button></a>
+              <a href="{% url 'delete' todo.id %}"><button type="submit" class="btn btn-danger btn-sm m-2"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+              <a href="{% url 'update' todo.id %}"><button type="submit" class="btn btn-success btn-sm m-2">{% if todo.status == True %} <i class="fa-solid fa-x"></i> Mark as not Finished {% else %}<i class="fa fa-check" aria-hidden="true"></i> Mark as Finished {% endif %}</button></a>
             </td>
           </tr>
           {% endfor %}
