@@ -36,6 +36,12 @@
               <button type="submit" class="btn btn-dark"> <i class="fa fa-plus" aria-hidden="true"></i>  Add New Task</button>
             </div>
           </form>
+          <div class="col-12 m-2">
+            <a href="{% url 'task-by-speech' %}"><button  class="btn btn-dark" onclick="toggleElement('info')"> <i class="fa-solid fa-microphone"></i>  Add Task by Speech</button></a>
+          </div>
+          <div id="info" style='display:none;'>
+            <h6>Speak after 2 seconds and Please wait after finished speaking.</h6>
+          </div>
 
           
         </div>
@@ -96,7 +102,14 @@
       
     </section>
 
-    
+    <script>
+      function toggleElement(elementId) {
+          var element = document.getElementById(elementId);
+          if (element.style.display === 'none' || element.style.display === '') {
+              element.style.display = 'block';
+          } 
+      }
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

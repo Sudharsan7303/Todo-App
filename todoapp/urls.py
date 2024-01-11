@@ -10,6 +10,8 @@ urlpatterns = [
     path('edit/<int:id>/', views.Edit, name='edit'),
     path('finished-todos/', views.Finished, name='finished'),
     path('pending-todos/', views.Pending, name='pending'),
+    path('task-by-speech/', views.speech, name='task-by-speech'),
+
 
 
 

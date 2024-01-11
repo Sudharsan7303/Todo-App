@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import todo
 from django.contrib.auth.decorators import login_required
+import speech_recognition
+import pyttsx3
 # Create your views here.
 
 @login_required
@@ -21,6 +23,36 @@ def home(request):
 
     }
     return render(request, 'todoapp/todo.html', context)
+
+
+@login_required
+def speech(request):
+    if request.method == 'POST':
+        task = request.POST.get('task')
+        new_todo = todo(user=request.user, todo_name=task)
+        new_todo.save()
+        return redirect('home-page')
+    
+
+    sr=speech_recognition.Recognizer()
+        
+    with speech_recognition.Microphone() as source2:
+        print("Silence Please")
+        sr.adjust_for_ambient_noise(source2,duration=2)
+        print("speak..")
+        audio2=sr.listen(source2)
+        text1=sr.recognize_google(audio2)
+        text1=text1.lower()
+        print("Did you say",text1)
+
+    
+    
+    context = {
+        'text': text1,
+        
+
+    }
+    return render(request, 'todoapp/task-by-speech.html',context)
 
 @login_required
 def Finished(request):
