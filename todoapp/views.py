@@ -37,20 +37,16 @@ def speech(request):
     sr=speech_recognition.Recognizer()
         
     with speech_recognition.Microphone() as source2:
-        print("Silence Please")
         sr.adjust_for_ambient_noise(source2,duration=2)
-        print("speak..")
         audio2=sr.listen(source2)
         text1=sr.recognize_google(audio2)
         text1=text1.lower()
-        print("Did you say",text1)
 
     
     
     context = {
         'text': text1,
         
-
     }
     return render(request, 'todoapp/task-by-speech.html',context)
 
