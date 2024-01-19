@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+# These are the configurations for live version
+'''For local version , change Debug=True and allowed_Hosts=[]
+'''
+import environ
+
+env=environ.Env()
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,9 +32,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(i9(8hpcm_(=k$m!m)+^h-u90mwh4e#xcs86+zfp40b0@ztzkd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -73,9 +80,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Todo_Website.wsgi.application'
 
 
-# Database
+# Database-Local Postgresql
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -84,6 +91,13 @@ DATABASES = {
         'PASSWORD': 'password',
 
     }
+}
+'''
+
+# Database-Live Postgresql
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 

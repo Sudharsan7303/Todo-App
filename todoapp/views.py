@@ -5,7 +5,7 @@ from django.contrib import messages
 from .models import todo
 from django.contrib.auth.decorators import login_required
 import speech_recognition
-import pyttsx3
+
 # Create your views here.
 
 @login_required
