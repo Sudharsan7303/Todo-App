@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(i9(8hpcm_(=k$m!m)+^h-u90mwh4e#xcs86+zfp40b0@ztzkd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -94,6 +94,7 @@ DATABASES = {
     }
 }
 '''
+
 
 # Database-Live Postgresql
 import dj_database_url
